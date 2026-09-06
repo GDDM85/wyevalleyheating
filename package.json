@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "demo": "node scripts/toggle-demo.mjs"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
