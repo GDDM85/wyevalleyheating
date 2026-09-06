@@ -1,8 +1,6 @@
 # Wye Valley Plumbing, Heating & Renewables
 
-Standalone Astro site for Wye Valley Plumbing, Heating & Renewables. This folder is a fully
-self-contained project (own `package.json`, Astro/Tailwind config) so it can be copied straight
-into its own git repository for hosting.
+Astro site for Wye Valley Plumbing, Heating & Renewables.
 
 ## Development
 
@@ -13,17 +11,6 @@ into its own git repository for hosting.
 
 - `npm run build`
 - `npm run preview`
-
-## Moving to its own repo
-
-From the repo root:
-
-```powershell
-git subtree split --prefix=wyevalleyheating -b wyevalleyheating-history
-```
-
-Then push `wyevalleyheating-history` to the new repository, or simply copy this folder's
-contents into a fresh repo if history isn't needed.
 
 ## Before going live
 
