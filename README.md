@@ -12,6 +12,12 @@ Astro site for Wye Valley Plumbing, Heating & Renewables.
 - `npm run build`
 - `npm run preview`
 
+## QR code (business cards etc.)
+
+- `npm run generate-qr -- <url> [output-name]`
+- Outputs `qr-codes/<output-name>-qr.png` (1000x1000) and `.svg`, e.g.:
+  - `npm run generate-qr -- https://wyevalleyheating.co.uk/ wyevalleyheating`
+
 ## Before going live
 
 Content is currently placeholder/demo data — replace before launch:

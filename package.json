@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "format": "prettier --write .",
-    "demo": "node scripts/toggle-demo.mjs"
+    "demo": "node scripts/toggle-demo.mjs",
+    "generate-qr": "node scripts/generate-qr.mjs"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
