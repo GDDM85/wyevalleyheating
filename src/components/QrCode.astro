@@ -1,0 +1,20 @@
+---
+// Generates the QR code locally at build time via the `qrcode` package — no external API calls.
+import QRCode from 'qrcode';
+
+interface Props {
+  value: string;
+  label?: string;
+}
+const { value, label } = Astro.props;
+
+const svg = await QRCode.toString(value, {
+  type: 'svg',
+  margin: 1,
+  color: { dark: '#141b30', light: '#ffffff' },
+});
+---
+<div class="inline-flex flex-col items-center gap-2 rounded-xl bg-white p-3 shadow-md">
+  <div class="h-24 w-24" set:html={svg} />
+  {label && <p class="max-w-[7rem] text-center text-[11px] font-medium leading-tight text-slate-600">{label}</p>}
+</div>

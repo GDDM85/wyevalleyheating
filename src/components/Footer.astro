@@ -1,0 +1,71 @@
+---
+import { business, navItems, footerServices, socialLinks, gasSafeLogo, logoIcon } from '../data/business';
+---
+<footer class="bg-navy-950 py-14 text-slate-400">
+  <div class="mx-auto grid max-w-6xl gap-10 px-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="space-y-4">
+      <div class="flex items-center gap-3">
+        <img src={logoIcon} alt="" class="h-9 w-9 flex-shrink-0" />
+        <div class="leading-tight">
+          <span class="block text-base font-extrabold tracking-wide text-white">{business.logoPrimary}</span>
+          <span class="block text-[11px] font-semibold uppercase tracking-[0.15em] text-leaf-400">{business.logoTagline}</span>
+        </div>
+      </div>
+      <p class="max-w-xs text-sm leading-6">
+        Trusted plumbing, heating and renewables engineer providing high quality workmanship across {business.areaSummary}.
+      </p>
+      <div class="flex gap-3">
+        {socialLinks.map((link) => (
+          <a href={link.href} class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-slate-300 hover:bg-leaf-600 hover:text-white" aria-label={link.label}>
+            <span set:html={link.icon}></span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-white">Quick Links</p>
+      <div class="flex flex-col gap-2 text-sm">
+        {navItems.map((item) => (
+          <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} class="hover:text-leaf-400">{item}</a>
+        ))}
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-white">Services</p>
+      <div class="flex flex-col gap-2 text-sm">
+        {footerServices.map((service) => (
+          <span>{service}</span>
+        ))}
+      </div>
+    </div>
+
+    <div class="space-y-3">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-white">Contact</p>
+      <a href={business.phoneHref} class="flex items-center gap-2 text-sm hover:text-leaf-400">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 flex-shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        {business.phone}
+      </a>
+      <a href={`mailto:${business.email}`} class="flex items-center gap-2 text-sm hover:text-leaf-400">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 flex-shrink-0"><path d="M22 6l-10 7L2 6"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+        {business.email}
+      </a>
+      <p class="flex items-start gap-2 text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-4 w-4 flex-shrink-0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Covering {business.areaSummary}
+      </p>
+      <div class="mt-2 inline-flex items-center gap-2 rounded-md bg-white px-3 py-2">
+        <img src={gasSafeLogo} alt="Gas Safe Register logo" class="h-7 w-auto" />
+        <span class="text-xs font-semibold uppercase tracking-wide text-slate-900">Registered No. {business.gasSafeNumber}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-10 flex max-w-6xl flex-col gap-2 border-t border-white/10 px-6 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+    <p>© {new Date().getFullYear()} {business.name}. Example site — not a live business.</p>
+    <p>
+      Website design &amp; build by <a href="https://danielmcdermott.co.uk" class="font-semibold text-leaf-400 hover:text-leaf-300">Daniel McDermott</a>
+    </p>
+  </div>
+</footer>

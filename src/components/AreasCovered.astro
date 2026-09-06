@@ -1,0 +1,17 @@
+---
+import { business } from '../data/business';
+---
+<section id="areas-covered" class="bg-navy-900 py-16">
+  <div class="mx-auto max-w-6xl px-6 text-center">
+    <p class="text-sm font-bold uppercase tracking-[0.2em] text-flame-400">Areas Covered</p>
+    <h2 class="mt-2 text-2xl font-bold text-white sm:text-3xl">Proudly serving {business.areaSummary}</h2>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+      {business.areas.map((area) => (
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-flame-400"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          {area}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

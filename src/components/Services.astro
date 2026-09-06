@@ -1,0 +1,29 @@
+---
+import { services } from '../data/business';
+---
+<section id="services" class="bg-white py-20">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mx-auto max-w-2xl space-y-3 text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.2em] text-leaf-600">Our Services</p>
+      <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">How We Can Help</h2>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <div class="rounded-xl border border-slate-200 p-6 text-center transition-colors hover:border-leaf-300 hover:bg-leaf-50/40">
+          <div class="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-flame-500 text-flame-600">
+            <span class="h-6 w-6" set:html={service.icon}></span>
+          </div>
+          <h3 class="text-base font-semibold text-slate-900">{service.title}</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-500">{service.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="#contact" class="inline-flex items-center justify-center rounded-md border border-leaf-600 px-6 py-3 text-sm font-semibold text-leaf-700 hover:bg-leaf-50">
+        View All Services
+      </a>
+    </div>
+  </div>
+</section>

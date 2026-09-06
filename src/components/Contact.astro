@@ -1,0 +1,54 @@
+---
+import { business } from '../data/business';
+import QrCode from './QrCode.astro';
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+---
+<section id="contact" class="bg-leaf-600 py-20">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div class="space-y-5 text-white">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-white/70">Get in Touch</p>
+        <h2 class="text-3xl font-bold sm:text-4xl">Need a heating or plumbing job sorted?</h2>
+        <p class="leading-8 text-white/85">
+          Get in touch for a free, no-obligation quote. Covering {business.areaSummary}.
+        </p>
+
+        <div class="flex flex-wrap items-start gap-6 pt-2">
+          <div class="space-y-3">
+            <a href={business.phoneHref} class="flex items-center gap-3 text-lg font-semibold hover:underline">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              {business.phone}
+            </a>
+            <a href={`mailto:${business.email}`} class="flex items-center gap-3 text-lg font-semibold hover:underline">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M22 6l-10 7L2 6"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+              {business.email}
+            </a>
+          </div>
+          <QrCode value={pageUrl} label="Scan to view this site" />
+        </div>
+      </div>
+
+      <form class="space-y-4 rounded-2xl bg-white p-6 shadow-xl sm:p-8">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="name" class="mb-1 block text-sm font-medium text-slate-700">Name</label>
+            <input type="text" id="name" name="name" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 focus:border-leaf-600 focus:outline-none focus:ring-2 focus:ring-leaf-500/30" placeholder="Your name" />
+          </div>
+          <div>
+            <label for="phone" class="mb-1 block text-sm font-medium text-slate-700">Phone</label>
+            <input type="tel" id="phone" name="phone" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 focus:border-leaf-600 focus:outline-none focus:ring-2 focus:ring-leaf-500/30" placeholder="Your number" />
+          </div>
+        </div>
+        <div>
+          <label for="message" class="mb-1 block text-sm font-medium text-slate-700">What do you need help with?</label>
+          <textarea id="message" name="message" rows="4" class="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-slate-900 focus:border-leaf-600 focus:outline-none focus:ring-2 focus:ring-leaf-500/30" placeholder="Tell us a bit about the job"></textarea>
+        </div>
+        <button type="submit" class="w-full rounded-lg bg-navy-900 px-6 py-3 text-sm font-semibold text-white hover:bg-navy-800">
+          Request a Free Quote
+        </button>
+        <p class="text-xs text-slate-400">Demo form — not yet connected to an email service (e.g. Formspree/Netlify Forms) before going live.</p>
+      </form>
+    </div>
+  </div>
+</section>
