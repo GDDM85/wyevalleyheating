@@ -1,31 +1,24 @@
 ---
+// Temporary holding page while pricing/content is finalised.
+// The full site lives in src/pages/_full-site.astro — to go live, replace the
+// contents of this file with that file's contents (or swap the two).
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import TrustStrip from '../components/TrustStrip.astro';
-import About from '../components/About.astro';
-import Services from '../components/Services.astro';
-import Gallery from '../components/Gallery.astro';
-import Testimonials from '../components/Testimonials.astro';
-import AreasCovered from '../components/AreasCovered.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
-import { business } from '../data/business';
+import { business, logoIcon } from '../data/business';
 
 const meta = {
-  title: `${business.name} — Heating, Plumbing & Renewables`,
-  description: `${business.name}, covering ${business.areaSummary}. Gas Safe registered, MCS certified renewables installer.`,
+  title: `${business.name} — Coming Soon`,
+  description: `${business.name} — website coming soon. Heating, plumbing & renewables specialists covering ${business.areaSummary}.`,
 };
 ---
 <Layout title={meta.title} description={meta.description}>
-  <Header />
-  <Hero />
-  <TrustStrip />
-  <About />
-  <Services />
-  <Gallery />
-  <Testimonials />
-  <AreasCovered />
-  <Contact />
-  <Footer />
+  <div class="flex min-h-screen flex-col items-center justify-center bg-navy-900 px-6 py-16 text-center">
+    <img src={logoIcon} alt="" class="h-16 w-16" />
+    <p class="mt-6 text-lg font-extrabold tracking-wide text-white sm:text-xl">{business.logoPrimary}</p>
+    <p class="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-leaf-400 sm:text-sm">{business.logoTagline}</p>
+
+    <h1 class="mt-10 text-3xl font-extrabold text-white sm:text-4xl">Coming soon</h1>
+    <p class="mt-4 max-w-md text-sm text-slate-300 sm:text-base">
+      Our new website is on its way.
+    </p>
+  </div>
 </Layout>
