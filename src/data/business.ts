@@ -9,6 +9,7 @@ export const business = {
   logoTagline: 'Plumbing, Heating & Renewables',
   eyebrow: 'Local. Reliable. Sustainable.',
   tagline: 'Trusted Plumbing, Heating & Renewables Specialists',
+  slogan: 'Reliable Plumbing. Smarter Heating. Greener Energy.',
   intro:
     'From boiler repairs to air source and ground source heat pumps, providing high quality plumbing, heating and renewable energy solutions across the Wye Valley and surrounding areas.',
   areaSummary: 'the Wye Valley, Herefordshire & Monmouthshire',
