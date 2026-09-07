@@ -8,3 +8,7 @@ build/
 .vercel/
 .parcel-cache/
 /.idea/
+
+# Local-only business docs (pricing, quotes) — never committed to this public repo
+/business-docs/
+
