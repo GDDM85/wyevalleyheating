@@ -1,8 +1,5 @@
 ---
 import { business, mobileContacts } from '../data/business';
-import QrCode from './QrCode.astro';
-
-const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 <section id="contact" class="bg-leaf-600 py-20">
   <div class="mx-auto max-w-6xl px-6">
@@ -34,11 +31,10 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
               ))}
             </p>
           </div>
-          <QrCode value={pageUrl} label="Scan to view this site" />
         </div>
       </div>
 
-      <form class="space-y-4 rounded-2xl bg-white p-6 shadow-xl sm:p-8">
+      <form id="quote-form" data-mailto={business.email} class="space-y-4 rounded-2xl bg-white p-6 shadow-xl sm:p-8">
         <div class="grid gap-4 sm:grid-cols-2">
           <div>
             <label for="name" class="mb-1 block text-sm font-medium text-slate-700">Name</label>
@@ -56,8 +52,22 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
         <button type="submit" class="w-full rounded-lg bg-navy-900 px-6 py-3 text-sm font-semibold text-white hover:bg-navy-800">
           Request a Free Quote
         </button>
-        <p class="text-xs text-slate-400">Demo form — not yet connected to an email service (e.g. Formspree/Netlify Forms) before going live.</p>
+        <p class="text-xs text-slate-400">Submitting opens your email app with these details ready to send to us.</p>
       </form>
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('quote-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const to = form.dataset.mailto;
+    const name = (form.querySelector('#name') as HTMLInputElement).value.trim();
+    const phone = (form.querySelector('#phone') as HTMLInputElement).value.trim();
+    const message = (form.querySelector('#message') as HTMLTextAreaElement).value.trim();
+    const subject = `Quote request from ${name || 'website visitor'}`;
+    const body = `Name: ${name}\nPhone: ${phone}\n\n${message}`;
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
