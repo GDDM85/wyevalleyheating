@@ -1,5 +1,5 @@
 // Content for the Wye Valley Plumbing, Heating & Renewables website.
-// Phone/email currently use placeholder-safe formats — update with real
+// Email currently uses a placeholder-safe format — update with real
 // details before going live.
 
 export const business = {
@@ -10,14 +10,20 @@ export const business = {
   eyebrow: 'Local. Reliable. Sustainable.',
   tagline: 'Trusted Plumbing, Heating & Renewables Specialists',
   intro:
-    'From boiler repairs to heat pumps and solar PV, providing high quality plumbing, heating and renewable energy solutions across the Wye Valley and surrounding areas.',
+    'From boiler repairs to air source and ground source heat pumps, providing high quality plumbing, heating and renewable energy solutions across the Wye Valley and surrounding areas.',
   areaSummary: 'the Wye Valley, Herefordshire & Monmouthshire',
   areas: ['Hereford', 'Hay-on-Wye', 'Ross-on-Wye', 'Monmouth', 'Leominster', 'Ledbury'],
-  phone: '07970 123456',
-  phoneHref: 'tel:+4407970123456',
-  email: 'info@wyevalleyplumbing.example',
-  gasSafeNumber: '123456 (example)',
+  phone: '01497 828041',
+  phoneHref: 'tel:+441497828041',
+  email: 'info@wyevalleyheating.co.uk',
+  gasSafeNumber: '967389',
 };
+
+// Direct mobile lines for the two engineers, shown as a secondary option on the Contact section.
+export const mobileContacts = [
+  { name: 'Scott', phone: '07801 460999', phoneHref: 'tel:+447801460999' },
+  { name: 'Nic', phone: '07807 337412', phoneHref: 'tel:+447807337412' },
+];
 
 export const logoIcon = '/images/wye-valley-icon.png';
 export const logoImage = '/images/wye-valley-logo.jpg';
@@ -36,7 +42,7 @@ export const trustStrip = [
   },
   {
     title: 'MCS Certified Renewables',
-    description: 'Approved installer of air source heat pumps and solar PV under the MCS scheme.',
+    description: 'Approved installer of air source and ground source heat pumps under the MCS scheme.',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>',
   },
   {
@@ -78,14 +84,9 @@ export const services = [
     icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2"></path><path d="M12.59 19.41A2 2 0 1 0 14 16H2"></path><path d="M17.73 7.73A2.5 2.5 0 1 1 19.5 12H2"></path></svg>',
   },
   {
-    title: 'Solar PV Panels',
-    description: 'Solar panel design and installation to help cut energy bills sustainably.',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>',
-  },
-  {
-    title: 'EV Charging Points',
-    description: 'Home EV charge point supply and installation for electric vehicles.',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path></svg>',
+    title: 'Ground Source Heat Pumps',
+    description: 'Supply and installation of efficient ground source heat pump systems.',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"></path><path d="M12 18v4"></path><circle cx="12" cy="12" r="6"></circle></svg>',
   },
   {
     title: 'Bathrooms',
@@ -103,7 +104,7 @@ export const footerServices = [...services.map((s) => s.title), 'Landlord Certif
 
 export const aboutHighlights = [
   'Boiler installations, servicing & repairs',
-  'Air source heat pumps & solar PV installations',
+  'Air source & ground source heat pump installations',
   'Central heating systems & power flushing',
   'Bathrooms & general plumbing',
   'Landlord certificates & safety checks',
@@ -111,7 +112,7 @@ export const aboutHighlights = [
 
 export const aboutCallout = {
   title: 'Thinking about renewables?',
-  description: 'Get a free consultation on air source heat pumps, solar PV and other renewable upgrades.',
+  description: 'Get a free consultation on air source and ground source heat pumps.',
   linkLabel: 'View Renewables Services',
 };
 
