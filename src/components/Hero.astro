@@ -4,6 +4,10 @@ import { imageExists } from '../utils/checkImage';
 
 const hasHeroImage = imageExists(heroImage.path);
 const hasAltoLogo = imageExists(altoLogo);
+
+// Force the slogan onto two fixed lines rather than letting it wrap arbitrarily.
+const sloganFinalPhrase = 'Greener Energy.';
+const sloganLead = business.slogan.replace(sloganFinalPhrase, '').trim();
 ---
 <section id="home" class="relative overflow-hidden bg-navy-900">
   {hasHeroImage && (
@@ -13,9 +17,12 @@ const hasAltoLogo = imageExists(altoLogo);
 
   <div class="relative mx-auto max-w-6xl px-6 py-20 sm:py-28">
     <div class="max-w-2xl space-y-6">
-      <h1 class="flex items-center gap-3 text-4xl font-extrabold leading-tight text-leaf-500 sm:text-5xl">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-9 w-9 flex-shrink-0 text-leaf-400/70 sm:h-11 sm:w-11"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
-        {business.slogan}
+      <h1 class="flex items-start gap-3 text-4xl font-extrabold leading-tight text-leaf-500 sm:text-5xl">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-9 w-9 flex-shrink-0 text-leaf-400/70 sm:mt-2 sm:h-11 sm:w-11"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+        <span>
+          <span class="block">{sloganLead}</span>
+          <span class="block">{sloganFinalPhrase}</span>
+        </span>
       </h1>
       <p class="max-w-lg text-lg leading-8 text-slate-300">{business.intro}</p>
 
