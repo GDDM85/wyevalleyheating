@@ -120,9 +120,9 @@ export const aboutCallout = {
 
 export const testimonials = [
   {
-    quote: 'They installed our new boiler and did a fantastic job. Professional, tidy and great communication throughout. Highly recommend.',
-    author: 'Emily R',
-    location: 'Hereford',
+    quote: "Scott at Wye Valley has been such a great guy — professional, and gave me options for my old house. He's done everything from bathroom work to a full heating system swap out and re-fit. 5 stars.",
+    author: 'Dan M',
+    location: '',
   },
   {
     quote: 'Switched to an air source heat pump and the whole process was explained clearly from start to finish. Our bills have dropped and the house is warmer than ever.',
@@ -136,7 +136,6 @@ export const testimonials = [
   },
 ];
 
-export const reviewSummary = '5.0 average rating from 47 customer reviews';
 
 export const galleryItems = [
   { path: '/images/gallery-1.jpg', alt: 'Recent boiler installation' },

@@ -1,5 +1,5 @@
 ---
-import { testimonials, reviewSummary } from '../data/business';
+import { testimonials } from '../data/business';
 ---
 <section id="reviews" class="bg-slate-50 py-20">
   <div class="mx-auto max-w-6xl px-6">
@@ -22,15 +22,6 @@ import { testimonials, reviewSummary } from '../data/business';
           <p class="text-xs text-slate-400">{testimonial.location}</p>
         </div>
       ))}
-    </div>
-
-    <div class="mt-10 flex items-center justify-center gap-2 text-sm font-medium text-slate-500">
-      <span class="flex gap-0.5 text-amber-400">
-        {Array.from({ length: 5 }).map(() => (
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-        ))}
-      </span>
-      {reviewSummary}
     </div>
   </div>
 </section>

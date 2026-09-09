@@ -53,21 +53,20 @@ const sloganLead = business.slogan.replace(sloganFinalPhrase, '').trim();
         Add a hero photo at public{heroImage.path}
       </p>
     )}
-  </div>
 
-  <div class="relative mx-6 mb-6 flex flex-wrap items-end justify-end gap-3 sm:mx-10 sm:mb-8">
-    <div class="inline-flex items-center gap-3 rounded-lg bg-white px-4 py-2 shadow-lg">
-      <img src={gasSafeLogo} alt="Gas Safe Register logo" class="h-9 w-auto flex-shrink-0" />
-      <span class="leading-tight text-slate-900">
-        <span class="block text-xs font-extrabold uppercase tracking-wide">Gas Safe Registered</span>
-        <span class="block text-[11px] font-medium text-slate-500">No. {business.gasSafeNumber}</span>
-      </span>
-    </div>
-    {hasAltoLogo && (
-      <img
-        src={altoLogo}
-        alt="Alto Assured Partner Installer — MCS registered"
-        class="h-14 w-14 flex-shrink-0 rounded-lg object-cover shadow-lg"
+    <div class="mt-10 flex flex-wrap items-end justify-end gap-3 sm:mt-14">
+      <div class="inline-flex items-center gap-3 rounded-lg bg-white px-4 py-2 shadow-lg">
+        <img src={gasSafeLogo} alt="Gas Safe Register logo" class="h-9 w-auto flex-shrink-0" />
+        <span class="leading-tight text-slate-900">
+          <span class="block text-xs font-extrabold uppercase tracking-wide">Gas Safe Registered</span>
+          <span class="block text-[11px] font-medium text-slate-500">No. {business.gasSafeNumber}</span>
+        </span>
+      </div>
+      {hasAltoLogo && (
+        <img
+          src={altoLogo}
+          alt="Alto Assured Partner Installer — MCS registered"
+          class="h-14 w-14 flex-shrink-0 rounded-lg object-cover shadow-lg"
       />
     )}
   </div>
