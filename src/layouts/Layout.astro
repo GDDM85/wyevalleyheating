@@ -1,9 +1,29 @@
 ---
+import { business, logoImage, socialLinks } from '../data/business';
+
 interface Props {
   title: string;
   description: string;
+  path?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, path = '/' } = Astro.props;
+
+const canonicalURL = new URL(path, Astro.site);
+const ogImageURL = new URL(logoImage, Astro.site);
+const sameAs = socialLinks.filter((link) => link.href !== '#').map((link) => link.href);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['Plumber', 'HVACBusiness'],
+  name: business.name,
+  image: ogImageURL.toString(),
+  url: Astro.site?.toString(),
+  telephone: business.phone,
+  email: business.email,
+  description: business.intro,
+  areaServed: business.areas.map((area) => ({ '@type': 'City', name: area })),
+  ...(sameAs.length > 0 && { sameAs }),
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +32,8 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/png" href="/images/wye-valley-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,6 +41,21 @@ const { title, description } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content="en_GB" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="bg-white text-slate-800 antialiased" style="font-family: 'Inter', sans-serif;">
     <main class="min-h-screen">

@@ -7,13 +7,12 @@ export const business = {
   shortName: 'Wye Valley',
   logoPrimary: 'WYE VALLEY',
   logoTagline: 'Plumbing, Heating & Renewables',
-  eyebrow: 'Local. Reliable. Sustainable.',
   tagline: 'Trusted Plumbing, Heating & Renewables Specialists',
   slogan: 'Reliable Plumbing. Smarter Heating. Greener Energy.',
   intro:
     'From boiler repairs to air source and ground source heat pumps, providing high quality plumbing, heating and renewable energy solutions across the Wye Valley and surrounding areas.',
-  areaSummary: 'the Wye Valley, Herefordshire & Monmouthshire',
-  areas: ['Hereford', 'Hay-on-Wye', 'Ross-on-Wye', 'Monmouth', 'Leominster', 'Ledbury'],
+  areaSummary: 'the Wye Valley, Herefordshire, Monmouthshire & Powys',
+  areas: ['Hay-on-Wye', 'Hereford', 'Brecon', 'Kington', 'Leominster', 'Ross-on-Wye', 'Monmouth', 'Ledbury'],
   phone: '01497 828041',
   phoneHref: 'tel:+441497828041',
   email: 'info@wyevalleyheating.co.uk',
@@ -29,10 +28,11 @@ export const mobileContacts = [
 export const logoIcon = '/images/wye-valley-icon.png';
 export const logoImage = '/images/wye-valley-logo.jpg';
 export const gasSafeLogo = '/images/gas-safe-logo.png';
+export const altoLogo = '/images/alto-assured-logo.jpeg';
 
 export const navItems = ['Home', 'Services', 'Projects', 'Reviews', 'About', 'Areas Covered', 'Contact'];
 
-export const heroChecklist = ['Gas Safe Registered', 'MCS Renewables Installer', 'Fully Insured', 'Competitive Prices'];
+export const heroChecklist = ['Gas Safe Registered', 'Alto Assured Partner Installer', 'Fully Insured', 'Competitive Prices'];
 
 export const trustStrip = [
   {
@@ -42,9 +42,10 @@ export const trustStrip = [
     logo: '/images/gas-safe-logo.png',
   },
   {
-    title: 'MCS Certified Renewables',
-    description: 'Approved installer of air source and ground source heat pumps under the MCS scheme.',
+    title: 'Alto Assured Partner Installer',
+    description: 'MCS registered installer of air source and ground source heat pumps, approved under the Alto Assured Partner scheme.',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>',
+    logo: '/images/alto-assured-logo.jpeg',
   },
   {
     title: 'Reliable & Punctual',

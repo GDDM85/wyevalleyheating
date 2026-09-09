@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wyevalleyheating.co.uk/sitemap.xml

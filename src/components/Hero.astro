@@ -1,8 +1,9 @@
 ---
-import { business, heroChecklist, heroImage, gasSafeLogo } from '../data/business';
+import { business, heroChecklist, heroImage, gasSafeLogo, altoLogo } from '../data/business';
 import { imageExists } from '../utils/checkImage';
 
 const hasHeroImage = imageExists(heroImage.path);
+const hasAltoLogo = imageExists(altoLogo);
 ---
 <section id="home" class="relative overflow-hidden bg-navy-900">
   {hasHeroImage && (
@@ -12,9 +13,10 @@ const hasHeroImage = imageExists(heroImage.path);
 
   <div class="relative mx-auto max-w-6xl px-6 py-20 sm:py-28">
     <div class="max-w-2xl space-y-6">
-      <p class="text-sm font-bold uppercase tracking-[0.2em] text-flame-400">{business.eyebrow}</p>
-      <h1 class="text-4xl font-extrabold leading-tight text-white sm:text-5xl">{business.tagline}</h1>
-      <p class="text-lg font-semibold text-leaf-400">{business.slogan}</p>
+      <h1 class="flex items-center gap-3 text-4xl font-extrabold leading-tight text-leaf-500 sm:text-5xl">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-9 w-9 flex-shrink-0 text-leaf-400/70 sm:h-11 sm:w-11"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+        {business.slogan}
+      </h1>
       <p class="max-w-lg text-lg leading-8 text-slate-300">{business.intro}</p>
 
       <div class="grid gap-3 sm:grid-cols-2">
@@ -46,7 +48,7 @@ const hasHeroImage = imageExists(heroImage.path);
     )}
   </div>
 
-  <div class="relative mx-6 mb-6 flex justify-end sm:mx-10 sm:mb-8">
+  <div class="relative mx-6 mb-6 flex flex-wrap items-end justify-end gap-3 sm:mx-10 sm:mb-8">
     <div class="inline-flex items-center gap-3 rounded-lg bg-white px-4 py-2 shadow-lg">
       <img src={gasSafeLogo} alt="Gas Safe Register logo" class="h-9 w-auto flex-shrink-0" />
       <span class="leading-tight text-slate-900">
@@ -54,5 +56,12 @@ const hasHeroImage = imageExists(heroImage.path);
         <span class="block text-[11px] font-medium text-slate-500">No. {business.gasSafeNumber}</span>
       </span>
     </div>
+    {hasAltoLogo && (
+      <img
+        src={altoLogo}
+        alt="Alto Assured Partner Installer — MCS registered"
+        class="h-14 w-14 flex-shrink-0 rounded-lg object-cover shadow-lg"
+      />
+    )}
   </div>
 </section>
