@@ -137,12 +137,6 @@ export const testimonials = [
 ];
 
 
-export const galleryItems = [
-  { path: '/images/gallery-1.jpg', alt: 'Recent boiler installation' },
-  { path: '/images/gallery-2.jpg', alt: 'Air source heat pump installation' },
-  { path: '/images/gallery-3.jpg', alt: 'Bathroom plumbing installation' },
-];
-
 export const heroImage = { path: '/images/hero.jpg', alt: `${business.name} — bathroom installation` };
 export const aboutImage = { path: '/images/about.png', alt: `Before and after boiler installation by ${business.shortName}` };
 

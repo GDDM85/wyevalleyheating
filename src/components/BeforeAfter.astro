@@ -1,0 +1,68 @@
+---
+import { getBeforeAfterPairs } from '../utils/gallery';
+
+const pairs = getBeforeAfterPairs('/images/gallery/before-after');
+---
+{pairs.length > 0 && (
+  <section id="before-after" class="bg-slate-50 py-20">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="mx-auto max-w-2xl space-y-3 text-center">
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-leaf-600">Before &amp; After</p>
+        <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">See the difference we make.</h2>
+        <p class="text-xs text-slate-400">Drag the slider to compare.</p>
+      </div>
+
+      <div class="mt-12 grid gap-10 sm:grid-cols-2">
+        {pairs.map((pair) => (
+          <figure class="space-y-3">
+            <div class="relative aspect-[4/3] w-full select-none overflow-hidden rounded-2xl shadow-md" data-compare>
+              <img src={pair.after} alt={`${pair.label} — after`} class="absolute inset-0 h-full w-full object-cover" />
+              <img
+                src={pair.before}
+                alt={`${pair.label} — before`}
+                data-compare-before
+                class="absolute inset-0 h-full w-full object-cover"
+                style="clip-path: inset(0 50% 0 0);"
+              />
+
+              <span class="pointer-events-none absolute left-3 top-3 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">Before</span>
+              <span class="pointer-events-none absolute right-3 top-3 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">After</span>
+
+              <div class="pointer-events-none absolute inset-y-0 w-0.5 bg-white shadow" data-compare-handle style="left: 50%;">
+                <span class="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-leaf-600 shadow-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"></path></svg>
+                </span>
+              </div>
+
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                data-compare-range
+                aria-label={`Drag to compare ${pair.label} before and after`}
+                class="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
+              />
+            </div>
+            <figcaption class="text-center text-sm font-medium text-slate-600">{pair.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  document.querySelectorAll('[data-compare]').forEach((container) => {
+    const before = container.querySelector('[data-compare-before]');
+    const handle = container.querySelector('[data-compare-handle]');
+    const range = container.querySelector('[data-compare-range]');
+    if (!(before instanceof HTMLElement) || !(handle instanceof HTMLElement) || !(range instanceof HTMLInputElement)) return;
+
+    range.addEventListener('input', () => {
+      const value = Number(range.value);
+      before.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+      handle.style.left = `${value}%`;
+    });
+  });
+</script>
