@@ -22,7 +22,7 @@ Astro site for Wye Valley Plumbing, Heating & Renewables.
 
 Content is currently placeholder/demo data — replace before launch:
 
-- Real phone number, email and Gas Safe registration number in `src/data/business.ts`
-- Real testimonials/reviews
-- Real photos in `public/images/` (hero, about, gallery-1/2/3, logo, icon, gas-safe logo, alto-assured-logo)
-- Remove `noindex, nofollow` from `src/layouts/Layout.astro` once ready for search engines
+- [x] Real phone number, email and Gas Safe registration number in `src/data/business.ts`
+- [ ] Real testimonials/reviews — current ones in `src/data/business.ts` (`testimonials`) are placeholder copy, not real customer quotes
+- [ ] Real photos in `public/images/` — `hero.jpg` and `gallery-1/2/3.jpg` still missing (`about.png`, logos already added)
+- [x] Removed `noindex, nofollow` from `src/layouts/Layout.astro` — site is now indexable
