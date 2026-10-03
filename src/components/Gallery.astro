@@ -1,7 +1,8 @@
 ---
-import { getGalleryImages } from '../utils/gallery';
+import { getGalleryProjects, PROJECT_CATEGORIES } from '../utils/gallery';
 
-const items = getGalleryImages('/images/gallery');
+const projects = getGalleryProjects('/images/gallery');
+const categories = ['All Work', ...PROJECT_CATEGORIES];
 ---
 <section id="projects" class="bg-white py-20">
   <div class="mx-auto max-w-6xl px-6">
@@ -10,24 +11,52 @@ const items = getGalleryImages('/images/gallery');
       <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">A few jobs from around the area.</h2>
     </div>
 
-    {items.length > 0 ? (
-      <div class="mt-12 grid gap-6 sm:grid-cols-3 lg:grid-cols-4">
-        {items.map((item, index) => (
-          <button
-            type="button"
-            class="group aspect-square w-full overflow-hidden rounded-2xl shadow-md"
-            data-gallery-trigger
-            data-index={index}
-            aria-label={`View larger photo: ${item.alt}`}
-          >
-            <img
-              src={item.path}
-              alt={item.alt}
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </button>
-        ))}
-      </div>
+    {projects.length > 0 ? (
+      <>
+        <div class="mt-8 -mx-2 overflow-x-auto px-2 sm:mx-0 sm:overflow-visible sm:px-0">
+          <div class="flex min-w-max items-center justify-start gap-6 border-b border-slate-200 sm:min-w-0 sm:justify-center sm:gap-8" role="group" aria-label="Filter projects">
+            {categories.map((category, index) => (
+              <button
+                type="button"
+                data-gallery-filter={category}
+                aria-pressed={index === 0 ? 'true' : 'false'}
+                class:list={[
+                  'shrink-0 border-b-2 px-1 py-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leaf-600 focus-visible:ring-offset-2',
+                  index === 0 ? 'border-leaf-600 text-leaf-700' : 'border-transparent text-slate-500 hover:text-slate-900',
+                ]}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 gap-5 min-[420px]:grid-cols-2 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4" data-gallery-grid>
+          {projects.map((project) => (
+            <button
+              type="button"
+              class="gallery-card group relative aspect-square w-full overflow-hidden rounded-2xl bg-slate-100 text-left shadow-md focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-leaf-500/50"
+              data-gallery-project={project.id}
+              data-gallery-category={project.category}
+              aria-label={`View project: ${project.title}${project.location ? `, ${project.location}` : ''}`}
+            >
+              <img
+                src={project.photos[0].path}
+                alt={project.photos[0].alt}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 group-focus-visible:scale-105"
+              />
+              <span class="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent px-4 pb-4 pt-12 text-white opacity-100 transition-opacity duration-300 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100">
+                <span class="block text-sm font-semibold">{project.title}</span>
+                {project.location && <span class="mt-1 block text-xs text-white/80">{project.location}</span>}
+              </span>
+            </button>
+          ))}
+        </div>
+        <p class="mt-10 hidden text-center text-sm text-slate-500" data-gallery-empty aria-live="polite">
+          No projects in this category yet. Please check back soon.
+        </p>
+      </>
     ) : (
       <div class="mt-12 flex aspect-[3/1] w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-center text-slate-400">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
@@ -36,52 +65,114 @@ const items = getGalleryImages('/images/gallery');
     )}
   </div>
 
-  <dialog id="gallery-lightbox" class="max-w-4xl rounded-2xl bg-transparent p-0 backdrop:bg-navy-950/90">
-    <div class="relative">
+  <dialog id="gallery-lightbox" aria-labelledby="gallery-lightbox-title" class="m-auto max-h-[94vh] w-[calc(100%-2rem)] max-w-5xl overflow-visible rounded-2xl bg-slate-950 p-0 text-white shadow-2xl backdrop:bg-slate-950/90">
+    <div class="relative overflow-hidden rounded-2xl">
       <button
         type="button"
         data-gallery-close
-        aria-label="Close"
-        class="absolute -top-11 right-0 rounded-full bg-black/40 p-2 text-white hover:bg-black/60"
+        aria-label="Close project photo viewer"
+        class="absolute right-3 top-3 z-10 rounded-full bg-black/55 p-2.5 text-white transition hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M18 6 6 18M6 6l12 12"></path></svg>
       </button>
-      <img data-gallery-image src="" alt="" class="max-h-[80vh] w-full rounded-xl object-contain" />
+      <img data-gallery-image src="" alt="" class="mx-auto max-h-[78vh] w-full bg-black object-contain" />
       <button
         type="button"
         data-gallery-prev
-        aria-label="Previous photo"
-        class="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-2 text-white hover:bg-black/60"
+        aria-label="Previous project photo"
+        class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/55 p-3 text-white transition hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M15 18l-6-6 6-6"></path></svg>
       </button>
       <button
         type="button"
         data-gallery-next
-        aria-label="Next photo"
-        class="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-2 text-white hover:bg-black/60"
+        aria-label="Next project photo"
+        class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/55 p-3 text-white transition hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M9 18l6-6-6-6"></path></svg>
       </button>
+      <div class="flex items-center justify-between gap-4 px-5 py-4 sm:px-6">
+        <div>
+          <h3 id="gallery-lightbox-title" class="font-semibold text-white" data-gallery-title></h3>
+          <p class="mt-1 text-sm text-white/65" data-gallery-location></p>
+        </div>
+        <p class="shrink-0 text-sm tabular-nums text-white/65" data-gallery-count aria-live="polite"></p>
+      </div>
     </div>
   </dialog>
 </section>
 
-<script define:vars={{ items }}>
+<script define:vars={{ projects }}>
   const dialog = document.getElementById('gallery-lightbox');
   const imageEl = dialog?.querySelector('[data-gallery-image]');
+  const titleEl = dialog?.querySelector('[data-gallery-title]');
+  const locationEl = dialog?.querySelector('[data-gallery-location]');
+  const countEl = dialog?.querySelector('[data-gallery-count]');
+  const cards = Array.from(document.querySelectorAll('[data-gallery-project]'));
+  const filters = Array.from(document.querySelectorAll('[data-gallery-filter]'));
+  const emptyMessage = document.querySelector('[data-gallery-empty]');
+  let selectedCategory = 'All Work';
   let currentIndex = 0;
 
+  const getVisiblePhotos = () => projects
+    .filter((project) => selectedCategory === 'All Work' || project.category === selectedCategory)
+    .flatMap((project) => project.photos.map((photo, photoIndex) => ({ project, photo, photoIndex })));
+
   function show(index) {
-    if (!imageEl || items.length === 0) return;
-    currentIndex = (index + items.length) % items.length;
-    imageEl.src = items[currentIndex].path;
-    imageEl.alt = items[currentIndex].alt;
+    const photos = getVisiblePhotos();
+    if (!imageEl || photos.length === 0) return;
+    currentIndex = (index + photos.length) % photos.length;
+    const current = photos[currentIndex];
+    imageEl.src = current.photo.path;
+    imageEl.alt = current.photo.alt;
+    if (titleEl) titleEl.textContent = current.project.title;
+    if (locationEl) {
+      locationEl.textContent = current.project.location ?? '';
+      locationEl.hidden = !current.project.location;
+    }
+    if (countEl) countEl.textContent = `${currentIndex + 1} / ${photos.length}`;
   }
 
-  document.querySelectorAll('[data-gallery-trigger]').forEach((button) => {
-    button.addEventListener('click', () => {
-      show(Number(button.dataset.index));
+  function setCategory(category) {
+    selectedCategory = category;
+    if (dialog?.open) dialog.close();
+    filters.forEach((filter) => {
+      const selected = filter.dataset.galleryFilter === category;
+      filter.setAttribute('aria-pressed', String(selected));
+      filter.classList.toggle('border-leaf-600', selected);
+      filter.classList.toggle('text-leaf-700', selected);
+      filter.classList.toggle('border-transparent', !selected);
+      filter.classList.toggle('text-slate-500', !selected);
+    });
+
+    let visibleCount = 0;
+    cards.forEach((card) => {
+      const matches = category === 'All Work' || card.dataset.galleryCategory === category;
+      if (matches) {
+        visibleCount += 1;
+        card.hidden = false;
+        requestAnimationFrame(() => card.classList.remove('gallery-card-hidden'));
+      } else {
+        card.classList.add('gallery-card-hidden');
+        window.setTimeout(() => {
+          if (card.classList.contains('gallery-card-hidden')) card.hidden = true;
+        }, 240);
+      }
+    });
+    if (emptyMessage) emptyMessage.classList.toggle('hidden', visibleCount > 0);
+  }
+
+  filters.forEach((filter) => {
+    filter.addEventListener('click', () => setCategory(filter.dataset.galleryFilter ?? 'All Work'));
+  });
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => {
+      const photos = getVisiblePhotos();
+      const projectIndex = photos.findIndex(({ project }) => project.id === card.dataset.galleryProject);
+      if (projectIndex < 0) return;
+      show(projectIndex);
       dialog?.showModal();
     });
   });
@@ -99,3 +190,21 @@ const items = getGalleryImages('/images/gallery');
     if (event.key === 'ArrowRight') show(currentIndex + 1);
   });
 </script>
+
+<style>
+  .gallery-card {
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  .gallery-card-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-card {
+      transition: none;
+    }
+  }
+</style>
